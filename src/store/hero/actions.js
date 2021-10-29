@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { get, deleteById, post } from "@/api/axiosConfig";
+import { get, deleteById, post, put } from "@/api/axiosConfig";
 
 export function getHeroesAction({ commit }) {
   commit(types.IS_LOADING_HERO, true);
@@ -24,6 +24,15 @@ export function addHeroAction({ commit }, payload) {
 
   return post("heroes", payload)
     .then(({ data }) => commit(types.ADD_HERO, data))
+    .catch((e) => console.log(e.message))
+    .finally(() => commit(types.IS_LOADING_HERO, false));
+}
+
+export function updateHeroAction({ commit }, payload) {
+  commit(types.IS_LOADING_HERO, true);
+
+  return put("heroes", payload)
+    .then(() => commit(types.UPDATE_HERO, payload))
     .catch((e) => console.log(e.message))
     .finally(() => commit(types.IS_LOADING_HERO, false));
 }

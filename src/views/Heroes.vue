@@ -1,7 +1,10 @@
 <template>
   <div class="container-fluid">
     <h1>Heroes Works!</h1>
-    <div style="display: flex; place-content: center; place-items: center">
+    <div
+      v-if="editingTracker === '0'"
+      style="display: flex; place-content: center; place-items: center"
+    >
       <div class="mb-5">
         <Form
           :text="'Save New Hero'"
@@ -31,12 +34,42 @@
           :key="hero.id"
         >
           <div class="card-header">
-            <h3 class="card-title">{{ hero.firstName }} {{ hero.lastName }}</h3>
-            <h5 class="card-subtitle mb-2 text-muted">{{ hero.house }}</h5>
-            <p class="card-text">{{ hero.knownAs }}</p>
+            <div
+              v-if="editingTracker === hero.id"
+              style="display: flex; place-content: center; place-items: center"
+            >
+              <div class="mb-5">
+                <Form
+                  :text="'Update Hero'"
+                  :obj="hero"
+                  @handleSubmit="updateHeroAction(hero)"
+                />
+              </div>
+            </div>
+            <div v-else>
+              <h3 class="card-title">
+                {{ hero.firstName }} {{ hero.lastName }}
+              </h3>
+              <h5 class="card-subtitle mb-2 text-muted">{{ hero.house }}</h5>
+              <p class="card-text">{{ hero.knownAs }}</p>
+            </div>
           </div>
           <section class="card-body">
             <div class="row">
+              <button
+                v-if="editingTracker === hero.id"
+                @click="() => (editingTracker = '0')"
+                class="btn btn-info card-link col text-center"
+              >
+                Cancel
+              </button>
+              <button
+                v-else
+                @click="() => (editingTracker = hero.id)"
+                class="btn btn-primary card-link col text-center"
+              >
+                Edit
+              </button>
               <button
                 @click="removeHeroAction(hero.id)"
                 class="btn btn-outline-danger card-link col text-center"
@@ -50,11 +83,10 @@
     </section>
   </div>
 </template>
+
 <script>
-// Vuejs 2 implemetations
 import { mapGetters, mapActions } from "vuex";
 import Form from "@/components/Form";
-
 export default {
   name: "Heroes",
   components: { Form },
@@ -66,12 +98,12 @@ export default {
       house: "",
       knownAs: "",
     },
+    editingTracker: "0",
   }),
-  // states from store
   computed: {
     ...mapGetters("heroModule", {
       heroes: "heroes",
-      loading: "isLoading",
+      isLoading: "isLoading",
     }),
   },
   methods: {
@@ -79,6 +111,7 @@ export default {
       "getHeroesAction",
       "removeHeroAction",
       "addHeroAction",
+      "updateHeroAction",
     ]),
     onSubmitHero() {
       this.addHeroAction(this.heroForm);
@@ -90,3 +123,5 @@ export default {
   },
 };
 </script>
+
+<style scoped></style>
