@@ -1,0 +1,3 @@
+export const IS_LOADING_ANTI_HERO = "IS_LOADING_ANTI_HERO";
+
+export const GET_ANTI_HEROES = "GET_ANTI_HEROES";
