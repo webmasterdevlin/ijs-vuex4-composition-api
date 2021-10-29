@@ -16,11 +16,14 @@
         <ul class="nav navbar-nav d-flex flex-row bd-highlight">
           <li class="nav-item me-5">
             <router-link to="/heroes" exact class="nav-link"
-              >Heroes</router-link
+              >{{ heroes.length > 0 ? heroes.length : "" }} Heroes</router-link
             >
           </li>
           <li class="nav-item">
-            <router-link to="/anti-heroes" exact class="nav-link">
+            <router-link to="/anti-heroes" exact class="nav-link"
+              >{{
+                antiHeroes.length > 0 ? antiHeroes.length : ""
+              }}
               Anti-Heroes</router-link
             >
           </li>
@@ -31,11 +34,25 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+import { computed, defineComponent } from "vue";
+import { store } from "@/store";
 
 export default defineComponent({
+  name: "Navbar",
   setup() {
-    return {};
+    const antiHeroes = computed(() => {
+      return store.getters["antiHeroModule/antiHeroes"];
+    });
+    const heroes = computed(() => {
+      return store.getters["heroModule/heroes"];
+    });
+
+    return {
+      antiHeroes,
+      heroes,
+    };
   },
 });
 </script>
+
+<style scoped></style>
