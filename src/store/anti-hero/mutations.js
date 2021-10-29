@@ -16,6 +16,11 @@ const mutations = {
   [types.ADD_ANTI_HERO](state, antiHeroData) {
     state.antiHeroes.push(antiHeroData);
   },
+
+  [types.UPDATE_ANTI_HERO](state, antiHero) {
+    const index = state.antiHeroes.findIndex((h) => h.id === antiHero.id);
+    state.antiHeroes[index] = antiHero;
+  },
 };
 
 export default mutations;
