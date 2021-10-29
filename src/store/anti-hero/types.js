@@ -2,3 +2,4 @@ export const IS_LOADING_ANTI_HERO = "IS_LOADING_ANTI_HERO";
 
 export const GET_ANTI_HEROES = "GET_ANTI_HEROES";
 export const REMOVE_ANTI_HERO = "REMOVE_ANTI_HERO";
+export const ADD_ANTI_HERO = "ADD_ANTI_HERO";

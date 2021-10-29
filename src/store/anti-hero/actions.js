@@ -1,5 +1,5 @@
 import * as types from "./types";
-import { get, deleteById } from "@/api/axiosConfig";
+import { get, deleteById, post } from "@/api/axiosConfig";
 
 export function getAntiHeroesAction({ commit }) {
   commit(types.IS_LOADING_ANTI_HERO, true);
@@ -15,6 +15,15 @@ export function removeAntiHeroAction({ commit }, payload) {
 
   return deleteById("anti-heroes", payload)
     .then(() => commit(types.REMOVE_ANTI_HERO, payload))
+    .catch((e) => console.log(e.message))
+    .finally(() => commit(types.IS_LOADING_ANTI_HERO, false));
+}
+
+export function addAntiHeroAction({ commit }, payload) {
+  commit(types.IS_LOADING_ANTI_HERO, true);
+
+  return post("anti-heroes", payload)
+    .then(({ data }) => commit(types.ADD_ANTI_HERO, data))
     .catch((e) => console.log(e.message))
     .finally(() => commit(types.IS_LOADING_ANTI_HERO, false));
 }
