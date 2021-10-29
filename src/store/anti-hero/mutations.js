@@ -1,11 +1,11 @@
 import * as types from "./types";
 
 const mutations = {
-  [types.GET_ANTI_HEROES](state, heroes) {
-    state.heroes = heroes;
+  [types.GET_ANTI_HEROES](state, antiHeroes) {
+    state.antiHeroes = antiHeroes;
   },
 
-  [types.GET_ANTI_HEROES](state, toggle) {
+  [types.IS_LOADING_ANTI_HERO](state, toggle) {
     state.isLoading = toggle;
   },
 };

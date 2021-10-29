@@ -28,9 +28,11 @@ export default {
   name: "Heroes",
   data() {
     return {
+      // local state
       message: "Heroes Works!",
     };
   },
+  // states from store
   computed: {
     ...mapGetters("heroModule", {
       heroes: "heroes",
