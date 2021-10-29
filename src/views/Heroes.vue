@@ -1,6 +1,15 @@
 <template>
   <div class="container-fluid">
     <h1>Heroes Works!</h1>
+    <div style="display: flex; place-content: center; place-items: center">
+      <div class="mb-5">
+        <!-- <Form
+          :text="'Save New Hero'"
+          :obj="heroForm"
+          @handleSubmit="onSubmitHero"
+        /> -->
+      </div>
+    </div>
     <div
       v-if="loading"
       style="display: flex; flex-direction: row; justify-content: center"
@@ -44,9 +53,11 @@
 <script>
 // Vuejs 2 implemetations
 import { mapGetters, mapActions } from "vuex";
+import Form from "@/components/Form";
 
 export default {
   name: "Heroes",
+  components: { Form },
   data() {
     return {
       // local state
