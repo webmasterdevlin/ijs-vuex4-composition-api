@@ -113,6 +113,7 @@ export default {
       "addHeroAction",
       "updateHeroAction",
     ]),
+    ...mapActions("antiHeroModule", ["getAntiHeroesAction"]),
     onSubmitHero() {
       this.addHeroAction(this.heroForm);
       this.heroForm = {};
@@ -120,6 +121,7 @@ export default {
   },
   mounted() {
     this.getHeroesAction();
+    this.getAntiHeroesAction();
   },
 };
 </script>
