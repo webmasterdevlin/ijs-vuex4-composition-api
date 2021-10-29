@@ -60,11 +60,14 @@
 import { defineComponent, onMounted, ref, computed } from "vue";
 import { store } from "@/store";
 import Form from "@/components/Form";
+import useLog from "@/hooks/useLog";
 
 export default defineComponent({
   name: "AntiHeroes",
   components: { Form },
   setup() {
+    const { log } = useLog();
+
     // local state
     const message = ref("AntiHeroes Works!");
     const antiHeroForm = ref({
@@ -89,6 +92,7 @@ export default defineComponent({
     });
 
     const removeAntiHero = async (id) => {
+      log("Munich!");
       await store.dispatch("antiHeroModule/removeAntiHeroAction", id);
     };
 
