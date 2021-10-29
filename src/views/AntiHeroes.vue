@@ -1,8 +1,20 @@
 <template>
   <div class="container-fluid">
     <h1>Anti Heroes Works!</h1>
+    <div style="display: flex; place-content: center; place-items: center">
+      <div class="mb-5">
+        <Form
+          :text="'Save New Anti Hero'"
+          :obj="antiHeroForm"
+          @handleSubmit="
+            addAntiHero(antiHeroForm);
+            antiHeroForm = {};
+          "
+        />
+      </div>
+    </div>
     <div
-      v-if="loading"
+      v-if="isLoading"
       style="display: flex; flex-direction: row; justify-content: center"
     >
       <div
@@ -47,12 +59,21 @@
 // Vuejs 3 implemetations
 import { defineComponent, onMounted, ref, computed } from "vue";
 import { store } from "@/store";
+import Form from "@/components/Form";
 
 export default defineComponent({
   name: "AntiHeroes",
+  components: { Form },
   setup() {
     // local state
     const message = ref("AntiHeroes Works!");
+    const antiHeroForm = ref({
+      id: "",
+      firstName: "",
+      lastName: "",
+      house: "",
+      knownAs: "",
+    });
 
     onMounted(async () => {
       await store.dispatch("antiHeroModule/getAntiHeroesAction");
@@ -71,10 +92,16 @@ export default defineComponent({
       await store.dispatch("antiHeroModule/removeAntiHeroAction", id);
     };
 
+    const addAntiHero = async (antiHero) => {
+      await store.dispatch("antiHeroModule/addAntiHeroAction", antiHero);
+    };
+
     return {
+      antiHeroForm,
       antiHeroes,
       loading,
       removeAntiHero,
+      addAntiHero,
     };
   },
 });
