@@ -8,6 +8,10 @@ const mutations = {
   [types.IS_LOADING_ANTI_HERO](state, toggle) {
     state.isLoading = toggle;
   },
+
+  [types.REMOVE_ANTI_HERO](state, id) {
+    state.antiHeroes = state.antiHeroes.filter((h) => h.id !== id);
+  },
 };
 
 export default mutations;
