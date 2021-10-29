@@ -80,6 +80,10 @@ export default {
       "removeHeroAction",
       "addHeroAction",
     ]),
+    onSubmitHero() {
+      this.addHeroAction(this.heroForm);
+      this.heroForm = {};
+    },
   },
   mounted() {
     this.getHeroesAction();
