@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseURL = "http://localhost:5000/";
+const baseURL = "/api/";
 const api = axios.create({ baseURL });
 
 export async function get(path) {
