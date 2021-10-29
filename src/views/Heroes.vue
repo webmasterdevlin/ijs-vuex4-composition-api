@@ -72,7 +72,11 @@ export default {
     }),
   },
   methods: {
-    ...mapActions("heroModule", ["getHeroesAction", "removeHeroAction"]),
+    ...mapActions("heroModule", [
+      "getHeroesAction",
+      "removeHeroAction",
+      "addHeroAction",
+    ]),
   },
   mounted() {
     this.getHeroesAction();
