@@ -14,7 +14,7 @@
       </div>
     </div>
     <div
-      v-if="isLoading"
+      v-if="loading"
       style="display: flex; flex-direction: row; justify-content: center"
     >
       <div
@@ -103,7 +103,7 @@ export default {
   computed: {
     ...mapGetters("heroModule", {
       heroes: "heroes",
-      isLoading: "isLoading",
+      loading: "isLoading",
     }),
   },
   methods: {
