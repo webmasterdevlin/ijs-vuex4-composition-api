@@ -2,7 +2,7 @@
 
 ### What to build in order
 
-- upgrade/migrate to Vue.js 3
+- Manual Vue.js 3 on CLI
 - npm i bootstrap 5
 - npm i bootstrap-icon
 - Navbar
@@ -15,16 +15,6 @@
 - Delete Request (class btn btn-danger)
 - Post Request (Form)
 - Put Request (editingTracker, v-if, v-else)
-- npm i jsonwebtoken
-- npm i -D @types/jsonwebtoken json-server-auth
-- Setup Vuex 4 - auth module
-- Register
-- Login
-- update auth service
-- authGuard
-- update router with meta requiresAuth and router BeforeEach
-- ForgotPassword
-- ContinueAs
 - Done! Now do the Villain part with its own page and Vuex module.
 
 ### Vuex Setup
