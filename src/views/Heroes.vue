@@ -3,15 +3,15 @@
     <h1>Heroes Works!</h1>
     <div style="display: flex; place-content: center; place-items: center">
       <div class="mb-5">
-        <!-- <Form
+        <Form
           :text="'Save New Hero'"
           :obj="heroForm"
           @handleSubmit="onSubmitHero"
-        /> -->
+        />
       </div>
     </div>
     <div
-      v-if="loading"
+      v-if="isLoading"
       style="display: flex; flex-direction: row; justify-content: center"
     >
       <div
@@ -58,12 +58,15 @@ import Form from "@/components/Form";
 export default {
   name: "Heroes",
   components: { Form },
-  data() {
-    return {
-      // local state
-      message: "Heroes Works!",
-    };
-  },
+  data: () => ({
+    heroForm: {
+      id: "",
+      firstName: "",
+      lastName: "",
+      house: "",
+      knownAs: "",
+    },
+  }),
   // states from store
   computed: {
     ...mapGetters("heroModule", {
